@@ -1,6 +1,14 @@
 let playerScore = 0;
 let computerScore = 0;
 
+function updateScore() {
+    const displayPlayerScore = document.querySelector("#displayPlayerScore");
+    displayPlayerScore.textContent = playerScore;
+
+    const displayComputerScore = document.querySelector("#displayComputerScore");
+    displayComputerScore.textContent = computerScore;
+}
+
 
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 100);
@@ -11,23 +19,12 @@ function getComputerChoice(){
     } else {
         return "SCISSORS";
     }  
-}
 
-/*
-function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper, or Scissors?");
-    let humanUpper = humanChoice.toUpperCase();
-    if (humanUpper == "PAPER" || humanUpper == "ROCK" || humanUpper == "SCISSORS") {
-        return humanUpper;
-    } else {
-        console.log("Invalid Choice. Please enter Rock, Paper, or Scissors.");
-    }
-    
+
 }
-*/
 
 let humanSelection;
-let computerSelection;
+let computerSelection = getComputerChoice();
 
 function playRound(humanChoice, computerChoice) {
     
@@ -47,27 +44,22 @@ function playRound(humanChoice, computerChoice) {
     let choices = `${humanSelection}-${computerSelection}`
     let winner = outcome[choices];
 
+    console.log(`${humanSelection} ;; ${computerSelection}`)
     if (humanSelection == computerSelection) {
-        console.log(`
-            It's a tie!`)
+        // Code for tie
     } else if (winner == "Player") {
         playerScore += 1;
-        console.log(`
-            Player Wins! ${humanSelection} beats ${computerSelection}.`)
+        console.log(`Player Wins. Score ${playerScore}`);
     } else if (winner == "Computer") {
         computerScore += 1;
-        console.log(`
-            Computer Wins! ${computerSelection} beats ${humanSelection}.`)
+        console.log(`Computer Wins. Score ${computerScore}`);
     } else {
-        console.log("Invalid game. Try again!");
+        // Code for Invalid (Default)
     }
 
-    console.log(`
-        Current Scores:
-        > Computer: ${computerScore}
-        > Player: ${playerScore}
-    `);
+    updateScore();
 }
+
 
 
 const selection = document.querySelector("#selection");
@@ -89,9 +81,11 @@ selection.addEventListener("click", (event) => {
             break;
     };
 
-    console.log(`Player Selected: ${humanSelection}`);
-
+    getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    console.log(playerScore);
+    console.log(computerScore);
 });
 
-playRound(humanSelection, computerSelection);
+
 
