@@ -33,11 +33,6 @@ function updateResults() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    
-    console.log(`
-        > Computer: ${computerChoice}
-        > Player: ${humanChoice}
-    `);
     const outcome = {
         "ROCK-SCISSORS" : "Player",
         "PAPER-ROCK" : "Player",
@@ -50,15 +45,10 @@ function playRound(humanChoice, computerChoice) {
     let choices = `${humanSelection}-${computerSelection}`
     let winner = outcome[choices];
 
-    console.log(`${humanSelection} ;; ${computerSelection}`)
-    if (humanSelection == computerSelection) {
-        // Code for tie
-    } else if (winner == "Player") {
+    if (winner == "Player") {
         playerScore += 1;
     } else if (winner == "Computer") {
         computerScore += 1;
-    } else {
-        // Code for Invalid
     }
 
     updateResults();
@@ -73,7 +63,6 @@ function startGame() {
 }
 
 const selection = document.querySelector("#selection");
-
 
 selection.addEventListener("click", (event) => {
     let playerSelection = event.target;
@@ -92,4 +81,10 @@ selection.addEventListener("click", (event) => {
     startGame();
 });  
 
+const reset = document.querySelector("#reset")
 
+reset.addEventListener("click", () => {
+    playerScore = 0;
+    computerScore = 0;
+    updateScore();
+});
