@@ -7,7 +7,7 @@ body * {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: red 1px solid;
+
     
     max-width: 80%;
 }
@@ -19,18 +19,34 @@ body * {
     padding: 4% 0%;
 }
 
-#score {
+#scoreboard {
     padding: 2% 0%;;
-    gap: 15%;
+    gap: 10%;
 
 }
-.tally {
+.score {
     font-size: 30px;
     font-weight: bold;
     flex-direction: column;
-
     margin: 0px;
 
+}
+
+#displayPlayerScore,
+#displayComputerScore {
+    font-size: 60px;
+}
+
+#displayPlayerScore {
+    color: green;
+}
+
+#displayComputerScore {
+    color: red;
+}
+
+#results {
+    font-size: 50px;
 }
 
 #selection {
@@ -40,12 +56,16 @@ body * {
 }
 
 .choice {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
-   
-    padding: 50px;
+    background-color: blue;
+    color: white;
+    padding: 80px;
     margin: 0px;
 
+    max-width: 250px;
+    max-height: 250px;
+
     cursor: pointer;
-    
 }
+

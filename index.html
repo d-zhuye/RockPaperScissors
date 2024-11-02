@@ -10,15 +10,20 @@
 </head>
 <body>
     <div id="title">Rock, Paper, Scissors</div>
-    <div id="score">
-        <div class="tally">
+    <div id="scoreboard">
+        <div class="score">
             <div>Player:</div>
-            <p>0</p>
+            <p id="displayPlayerScore">0</p>
         </div>
-        <div class="tally">
+        <div class="score">
             <div>Bot:</div>
-            <p>0</p>
+            <p id="displayComputerScore">0</p>
         </div>
+    </div>
+    
+    <div id="results">
+        <p id="playerResults"></p>
+        <p id="computerResults"></p>
     </div>
     <div id="selection">
         <button id="rock" class="choice">Rock</button>
@@ -26,6 +31,5 @@
         <button id="scissors" class="choice">Scissors</button>
     </div>
    
-    
 </body>
 </html>

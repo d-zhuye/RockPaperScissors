@@ -1,14 +1,8 @@
 let playerScore = 0;
 let computerScore = 0;
 
-function updateScore() {
-    const displayPlayerScore = document.querySelector("#displayPlayerScore");
-    displayPlayerScore.textContent = playerScore;
-
-    const displayComputerScore = document.querySelector("#displayComputerScore");
-    displayComputerScore.textContent = computerScore;
-}
-
+let humanSelection;
+let computerSelection;
 
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 100);
@@ -19,12 +13,24 @@ function getComputerChoice(){
     } else {
         return "SCISSORS";
     }  
-
-
 }
 
-let humanSelection;
-let computerSelection = getComputerChoice();
+function updateScore() {
+    const displayPlayerScore = document.querySelector("#displayPlayerScore");
+    displayPlayerScore.textContent = playerScore;
+
+    const displayComputerScore = document.querySelector("#displayComputerScore");
+    displayComputerScore.textContent = computerScore;
+}
+
+function updateResults() {
+    const playerResults = document.querySelector("#playerResults");
+    playerResults.textContent = `${humanSelection}`;
+
+    const computerResults = document.querySelector("#computerResults");
+    computerResults.textContent = `${computerSelection}`;
+
+}
 
 function playRound(humanChoice, computerChoice) {
     
@@ -49,43 +55,41 @@ function playRound(humanChoice, computerChoice) {
         // Code for tie
     } else if (winner == "Player") {
         playerScore += 1;
-        console.log(`Player Wins. Score ${playerScore}`);
     } else if (winner == "Computer") {
         computerScore += 1;
-        console.log(`Computer Wins. Score ${computerScore}`);
     } else {
-        // Code for Invalid (Default)
+        // Code for Invalid
     }
 
+    updateResults();
     updateScore();
+
+    return winner;
 }
 
-
+function startGame() {
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+}
 
 const selection = document.querySelector("#selection");
+
 
 selection.addEventListener("click", (event) => {
     let playerSelection = event.target;
     switch (playerSelection.id) {
         case "rock":
-            console.log("you selected rock.")
             humanSelection = "ROCK";
             break;
         case "paper":
-            console.log("you selected paper.")
             humanSelection = "PAPER";
             break;
         case "scissors":
-            console.log("you selected scissors.")
             humanSelection = "SCISSORS";
             break;
     };
 
-    getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log(playerScore);
-    console.log(computerScore);
-});
-
+    startGame();
+});  
 
 
